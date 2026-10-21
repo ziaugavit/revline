@@ -18,6 +18,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  line-break: strict; /* Japanese: never start a line with ー or 。 */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -32,13 +33,14 @@ a:hover { text-decoration: underline; }
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
 
 header.top {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 18px;
   padding: 20px 0;
 }
+nav { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 18px; }
 .brand:hover { text-decoration: none; }
 .brand img { width: 32px; height: 32px; border-radius: 8px; }
-nav a { color: var(--muted); font-size: 15px; margin-left: 18px; }
+nav a { color: var(--muted); font-size: 15px; }
 nav a:hover { color: var(--text); text-decoration: none; }
 
 .hero { text-align: center; padding: 56px 0 40px; }
@@ -77,8 +79,9 @@ details p, details ul { color: var(--muted); margin: 10px 0 0; font-size: 16px; 
 .contact { text-align: center; background: var(--surface); border: 1px solid var(--hairline); border-radius: 24px; padding: 32px 20px; }
 .contact p { color: var(--muted); margin: 0; }
 
-.legal h1 { font-size: 36px; margin: 32px 0 4px; }
+.legal h1 { font-size: clamp(28px, 8vw, 36px); margin: 32px 0 4px; }
 .legal .updated { color: var(--faint); margin: 0 0 28px; font-size: 15px; }
+.legal .note { color: var(--muted); font-size: 14px; border-left: 2px solid var(--hairline); padding-left: 12px; margin: -16px 0 24px; }
 .legal h2 { font-size: 21px; margin: 32px 0 8px; }
 .legal p, .legal li { color: #d4d4d4; }
 .legal ul { padding-left: 22px; }
@@ -89,3 +92,12 @@ details p, details ul { color: var(--muted); margin: 10px 0 0; font-size: 16px; 
 
 footer { color: var(--faint); font-size: 14px; padding: 40px 0 48px; text-align: center; }
 footer a { color: var(--muted); margin: 0 8px; }
+
+select.lang {
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  background: var(--surface); color: var(--muted); font: inherit; font-size: 14px;
+  border: 1px solid var(--hairline); border-radius: 999px; padding: 5px 28px 5px 12px;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 14px center, right 9px center; background-size: 5px 5px; background-repeat: no-repeat;
+}
+select.lang:hover, select.lang:focus { color: var(--text); outline: none; border-color: rgba(255, 255, 255, 0.2); }
